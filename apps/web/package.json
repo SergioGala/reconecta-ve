@@ -4,14 +4,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
-    "build": "next build",
+   "dev": "next dev --webpack --port 3000",
+   "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
     "@repo/ui": "*",
+    "@serwist/next": "^9.5.11",
     "@supabase/supabase-js": "^2.108.2",
     "next": "16.2.0",
     "react": "^19.2.0",
@@ -24,6 +25,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "eslint": "^9.39.1",
+    "serwist": "^9.5.11",
     "typescript": "5.9.2"
   }
 }

@@ -1,4 +1,5 @@
 import { supabase } from "../lib/supabase";
+import EstadoConexion from "@/components/EstadoConexion"
 
    export default async function Home() {
      const { data: personas } = await supabase
@@ -8,6 +9,7 @@ import { supabase } from "../lib/supabase";
      return (
        <main style={{ padding: 24, fontFamily: "system-ui" }}>
          <h1>Reconecta VE — prueba de base de datos</h1>
+         <EstadoConexion />
          <ul>
            {personas?.map((p, i) => (
              <li key={i}>
