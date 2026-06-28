@@ -20,7 +20,7 @@ export default async function CentrosPage() {
   const { data, error } = await supabase
     .from("collection_center")
     .select(
-      "id, name, type, address, manager_name, manager_contact_masked, status, verified, lat, lng, last_updated_at, org_id"
+    "id, name, type, address, manager_name, manager_contact_masked, status, verified, lat, lng, updated_at, org_id"
     )
     .order("verified", { ascending: false })
     .order("name", { ascending: true });
@@ -38,7 +38,7 @@ export default async function CentrosPage() {
     status: r.status,
     verified: r.verified,
     orgId: r.org_id,
-    lastUpdatedAt: r.last_updated_at,
+     lastUpdatedAt: r.updated_at,
   }));
 
   return (
