@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #aaa;
+}
+.label {
+  font-weight: 500;
+}
+.input {
+  padding: 12px;
+  border-radius: var(--rv-radius);
+  border: 1px solid var(--rv-border);
+  background: var(--rv-surface-2);
+  color: var(--rv-text);
+  font-size: 14px;
+  width: 100%;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--rv-blue);
+}
+.hint {
+  font-size: 11px;
+  color: var(--rv-muted);
+}
