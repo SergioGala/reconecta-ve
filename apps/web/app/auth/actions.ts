@@ -52,7 +52,8 @@ export async function register(formData: FormData): Promise<AuthResult> {
   });
 
   if (error) {
-    return { error: `Error al registrarse: ${error.message}` };
+    console.error("Error signUp completo:", JSON.stringify(error, null, 2));
+    return { error: `Error al registrarse: ${error.message || error.name || "desconocido"}` };
   }
 
   // Si trae código de invitación, canjearlo (asigna rol)

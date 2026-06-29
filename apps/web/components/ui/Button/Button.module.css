@@ -1,0 +1,37 @@
+.button {
+  padding: 13px 20px;
+  border-radius: var(--rv-radius);
+  border: 1px solid transparent;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.button:not(:disabled):active {
+  opacity: 0.85;
+}
+.fullWidth {
+  width: 100%;
+}
+.primary {
+  background: var(--rv-blue);
+  color: #fff;
+}
+.secondary {
+  background: var(--rv-surface-2);
+  color: var(--rv-text);
+  border-color: var(--rv-border);
+}
+.success {
+  background: var(--rv-green);
+  color: #fff;
+}
+.danger {
+  background: var(--rv-surface-2);
+  color: var(--rv-red);
+  border-color: var(--rv-red);
+}
