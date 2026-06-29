@@ -26,7 +26,7 @@ export default async function CentrosPage() {
     .order("name", { ascending: true });
 
   // La DB usa snake_case; los tipos del paquete usan camelCase. Mapeamos.
-  const centros: CollectionCenter[] = (data ?? []).map((r) => ({
+  const centros: CollectionCenter[] = (data ?? []).map((r : any) => ({
     id: r.id,
     name: r.name,
     type: r.type,
@@ -38,6 +38,7 @@ export default async function CentrosPage() {
     status: r.status,
     verified: r.verified,
     orgId: r.org_id,
+    lastUpdatedAt: r.updated_at,
     
   }));
 
