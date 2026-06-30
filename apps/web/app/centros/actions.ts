@@ -18,13 +18,17 @@ export async function registerCenter(
   const profile = await getCurrentProfile();
   if (!profile) return { error: "Debes iniciar sesión para registrar un centro." };
 
-  const canManage =
-    profile.role === "coordinador" ||
-    profile.role === "ong" ||
-    profile.isSuperadmin;
-  if (!canManage) {
-    return { error: "Tu rol no tiene permiso para registrar centros." };
-  }
+
+  // Cualquiera con cuenta puede registrar; el centro entra sin verificar
+  // y un coordinador lo aprueba después (verified=false más abajo).
+  
+  // const canManage =
+  //   profile.role === "coordinador" ||
+  //   profile.role === "ong" ||
+  //   profile.isSuperadmin;
+  // if (!canManage) {
+  //   return { error: "Tu rol no tiene permiso para registrar centros." };
+  // }
 
   // 2) Leer y validar el formulario.
   const name = String(formData.get("name") ?? "").trim();

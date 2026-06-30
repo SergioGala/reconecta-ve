@@ -72,10 +72,11 @@ export async function createCenter(input: NewCenter): Promise<CollectionCenter> 
       manager_name: input.managerName,
       manager_contact_masked: input.managerContactMasked ?? null,
       org_id: input.orgId ?? null,
+      verified: false, // siempre sin verificar; un coordinador aprueba después
+      status: "activo",
     })
     .select("*")
     .single();
-
   if (error) throw new Error(`Error creando centro: ${error.message}`);
   return rowToCenter(data);
 }
@@ -92,4 +93,26 @@ export async function updateCenterStatus(
     .eq("id", id);
 
   if (error) throw new Error(`Error actualizando centro: ${error.message}`);
+}
+
+// ── Listar centros PENDIENTES de verificar (solo coordinadores) ──
+export async function listPendingCenters(): Promise<CollectionCenter[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("collection_center")
+    .select("*")
+    .eq("verified", false)
+    .order("created_at", { ascending: false });
+  if (error) throw new Error(`Error listando pendientes: ${error.message}`);
+  return (data ?? []).map(rowToCenter);
+}
+
+// ── Verificar un centro (solo coordinador/ong por RLS) ──
+export async function verifyCenter(id: string): Promise<void> {
+  const supabase = createClient();
+  const { error } = await supabase
+    .from("collection_center")
+    .update({ verified: true })
+    .eq("id", id);
+  if (error) throw new Error(`Error verificando centro: ${error.message}`);
 }
