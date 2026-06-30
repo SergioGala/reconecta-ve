@@ -9,7 +9,7 @@
 # testing
 /coverage
 
-.guia
+guia
 
 # next.js
 /.next/
